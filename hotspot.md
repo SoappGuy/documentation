@@ -1,29 +1,14 @@
-# Create a Wi-Fi hotspot on Linux using `nmcli`
+# Create a Wi-Fi hotspot by using `linux-wifi-hotspot`
 
-### Setup
+### Installation
 ```sh
-nmcli con add type wifi ifname wlan0 con-name Hostspot autoconnect yes ssid 17ach6h
-nmcli con modify Hostspot 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
-nmcli con modify Hostspot wifi-sec.key-mgmt wpa-psk
-nmcli con modify Hostspot wifi-sec.psk "12345678"
+yay -S linux-wifi-hotspot
 ```
 
-### Change Password
+# Important
+If you want to serve hotspot and connect to Wi-Fi using one adapter you have to use same channel (and frequency) for both. 
+To see channel of the connected Wi-Fi network: 
 ```sh
-nmcli con modify Hostspot wifi-sec.psk "12345678"
+iw dev wlan0 info
 ```
-
-### Run
-```sh
-nmcli con up Hostspot
-```
-
-# Note
-If after reboot `nmcli con up Hotspot` doesn't work
-
-Use this command instead to start Hotspot
-
-```sh
-UUID=$(grep uuid /etc/NetworkManager/system-connections/Hotspot | cut -d= -f2)
-nmcli con up uuid $UUID
-```
+* `wlan0` - name of adapter.
