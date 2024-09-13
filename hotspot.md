@@ -2,7 +2,7 @@
 
 ### Installation
 ```sh
-yay -S linux-wifi-hotspot
+paru -S linux-wifi-hotspot
 ```
 
 # Important
